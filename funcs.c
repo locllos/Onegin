@@ -14,9 +14,8 @@ Line* Read_lines(char* file_name, int* number_of_lines)
 	while (tmp != EOF)
 	{
 		lines[i].string = (char*)realloc(lines[i].string, (lines[i].size + 1) * sizeof(char));
-		lines[i].size++;
 
-		lines[i].string[lines[i].size - 1] = tmp;
+		lines[i].string[lines[i].size] = (tmp == '\n') ? '\0' : tmp;
 
 
 		if (tmp == '\n')
@@ -29,6 +28,7 @@ Line* Read_lines(char* file_name, int* number_of_lines)
 			lines[i].size = 0;
 
 		}
+		else lines[i].size++;
 
 		tmp = fgetc(file);
 	}
@@ -38,22 +38,39 @@ Line* Read_lines(char* file_name, int* number_of_lines)
 	(*number_of_lines) = i + 1;
 
 
-	//Если предпоследняя строка содержала только символ табуляции
+	//Если предпоследняя строка содержала только символ slash n
 	if (lines[*number_of_lines - 1].string == NULL)
 	{
-		--* number_of_lines;
+		--*number_of_lines;
 	}
 
 
-	//В случае, когда в последней строчке файла не проставлен переход на следующую строку, мы принудительно ставим символ перехода
-	if (lines[*number_of_lines - 1].string[lines[*number_of_lines - 1].size - 1] != '\n')
+	//В случае, когда в последней строчке файла не был проставлен переход на следующую строку
+	if (lines[*number_of_lines - 1].string[lines[*number_of_lines - 1].size] != '\0')
 	{
 		lines[*number_of_lines - 1].string = (char*)realloc(lines[*number_of_lines - 1].string, (lines[i].size + 1) * sizeof(char));
-		lines[*number_of_lines - 1].size++;
-		lines[*number_of_lines - 1].string[lines[*number_of_lines - 1].size - 1] = '\n';
+		lines[*number_of_lines - 1].string[lines[*number_of_lines - 1].size] = '\0';
 	}
 
 	return lines;
+}
+
+Line* Copy_lines(Line* lines, int number_of_lines)
+{
+	Line* copy_lines = (Line*)calloc(number_of_lines, sizeof(Line));
+
+	for (int i = 0; i < number_of_lines; ++i)
+	{
+		copy_lines[i].size = lines[i].size;
+		copy_lines[i].string = (char*)calloc(lines[i].size + 1, sizeof(char));
+		
+		for (int j = 0; j < lines[i].size + 1; ++j)
+		{
+			copy_lines[i].string[j] = lines[i].string[j];
+		}
+	}
+
+	return copy_lines;
 }
 
 Line* Reverse_lines(Line* old_lines, int number_of_lines)
@@ -68,29 +85,48 @@ Line* Reverse_lines(Line* old_lines, int number_of_lines)
 		new_lines[i].string = (char*)calloc(old_lines[i].size, sizeof(char*));
 		new_lines[i].size = old_lines[i].size;
 
-		for (int j = 0; j < new_lines[i].size - 1; ++j)
+		for (int j = 0; j < new_lines[i].size; ++j)
 		{
 			int current_size = old_lines[i].size;
 
-			new_lines[i].string[j] = old_lines[i].string[current_size - j - 2];
+			new_lines[i].string[j] = old_lines[i].string[current_size - j - 1];
 		}
 
-		new_lines[i].string[new_lines[i].size - 1] = '\n';
+		//new_lines[i].string[new_lines[i].size] = '\0';
 	}
 
 	return new_lines;
 }
 
-int comparator(const void* value_1, const void* value_2)
+int comparator(const void* value_a, const void* value_b)
 {
-	const Line* line_1 = (const Line*)value_1;
-	const Line* line_2 = (const Line*)value_2;
+	const Line* line_a = (const Line*)value_a;
+	const Line* line_b = (const Line*)value_b;
 	
-	const char* string_1 = line_1->string;
-	const char* string_2 = line_2->string;
+	char* string_a = Erase_punct_marks(line_a->string, line_a->size);
+	char* string_b = Erase_punct_marks(line_b->string, line_b->size);
+	
+	const int result = strcmp(string_a, string_b);
 
-	return strcmp(string_1, string_2);
+	free(string_a);
+	free(string_b);
 
+	return  result;
+	
+
+}
+
+char* Erase_punct_marks(char* string, int size)
+{
+	char* clear_string = (char*)calloc(size + 1, sizeof(char));
+
+	int j = 0;
+	for (int i = 0; i < size; ++i)
+		if (isalpha(string[i])) clear_string[j++] = string[i];
+
+	clear_string[size] = '\0';
+
+	return clear_string;
 }
 
 void Print_lines(Line* lines, int number_of_lines, char* reason)
@@ -99,10 +135,11 @@ void Print_lines(Line* lines, int number_of_lines, char* reason)
 	printf("%s\n", reason);
 	for (int i = 0; i < number_of_lines; ++i)
 	{
-		printf("%d. ", lines[i].size);
+		printf("%d: ", lines[i].size);
 
 		for (int j = 0; j < lines[i].size; ++j)
 			printf("%c", lines[i].string[j]);
+		printf("\n");
 	}
 
 }
@@ -123,31 +160,10 @@ void Write_lines(char* file_name, Line* lines, int number_of_lines, char* type, 
 	{
 		for (int j = 0; j < lines[i].size; ++j)
 			fputc(lines[i].string[j], file);
+		fputc('\n', file);
 	}
 
 	fclose(file);
-}
-
-void Erase_end_punctuation_marks(Line* lines, int number_of_lines)
-{
-	const char punct_marks[7] = { '.', ',', ':' , ';', '-', '!', '?' };
-
-	for (int i = 0; i < number_of_lines; ++i)
-	{
-		//Один символ возможен, если это символ перехода на следующую строку, а это не знак препинания
-		if (lines[i].size > 1) {
-
-			for (int j = 0; j < 7; ++j)
-			{
-				if (lines[i].string[lines[i].size - 2] == punct_marks[j]) // -2 т.к. последний символ = slash n
-				{
-					lines[i].string = (char*)realloc(lines[i].string, lines[i].size - 1);
-					--lines[i].size;
-					lines[i].string[lines[i].size - 1] = '\n';
-				}
-			}
-		}
-	}
 }
 
 void Delete_lines(Line* lines, int number_of_lines)

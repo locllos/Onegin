@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 typedef struct Line
 {
@@ -12,10 +13,10 @@ typedef struct Line
 
 
 /*!
-Считывает данные файла
-\param[in]   file_name       название файла
-\param[out]  number_of_lines количество строк
-\return указатель на структуры типа Line
+РЎС‡РёС‚С‹РІР°РµС‚ РґР°РЅРЅС‹Рµ С„Р°Р№Р»Р°
+\param[in]   file_name       РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°
+\param[out]  number_of_lines РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє
+\return СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚РёРїР° Line
 */
 
 Line* Read_lines(char* file_name, int* number_of_lines);
@@ -23,46 +24,64 @@ Line* Read_lines(char* file_name, int* number_of_lines);
 int comparator(const void* value_1, const void* value_2);
 
 /*!
-Реверс строки
-\param[in] lines           указатель на структуры типа Line
-\param[in] number_of_lines количество строк
-\returns указатель на структуры типа Line
+Р РµРІРµСЂСЃ СЃС‚СЂРѕРєРё
+\param[in] lines           СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚РёРїР° Line
+\param[in] number_of_lines РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє
+\returns СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚РёРїР° Line
 */
 
 Line* Reverse_lines(Line* old_lines, int number_of_lines);
 
 /*!
-Печатает данные файла
-\param[in] lines           указатель на структуры типа Line
-\param[in] number_of_lines количество строк
-\param[in] reason          причина вызова функции
+РЎРѕР·РґР°РµС‚ РЅРѕРІСѓСЋ СЃС‚СЂРѕРєСѓ, СЃРѕРґРµСЂР¶Р°С‰СѓСЋ С‚РѕР»СЊРєРѕ Р±СѓРєРІС‹, Рё РїРµСЂРµР·Р°РїРёСЃС‹РІР°РµС‚ С‚СѓРґР° РїРѕРґР°РЅРЅСѓСЋ РЅР° РІС…РѕРґ СЃС‚СЂРѕРєСѓ
+\param[in] string           СЃС‚СЂРѕРєР°
+\param[in] size				РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРёРјРІРѕР»РѕРІ
+\returns СЃС‚СЂРѕРєСѓ, СЃРѕРґРµСЂР¶Р°С‰СѓСЋ С‚РѕР»СЊРєРѕ Р±СѓРєРІС‹
+*/
+
+char* Erase_punct_marks(char* string, int size);
+
+/*!
+РљРѕРїРёСЂСѓРµС‚ Рё РІРѕР·РІСЂР°С‰Р°РµС‚ СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚РёРїР° Line
+\param[in] Line*					СѓРєР°Р·Р°С‚РµР»Рё РЅР° СЃС‚СЂСѓРєС‚СЂС‹ С‚РёРїР° Line*
+\param[in] nubmer_of_lines			РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє
+\returns СѓРєР°Р·Р°С‚РµР»Рё РЅР° СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚РёРїР° Line
+*/
+
+Line* Copy_lines(Line* lines, int number_of_lines);
+
+/*!
+РџРµС‡Р°С‚Р°РµС‚ РґР°РЅРЅС‹Рµ С„Р°Р№Р»Р°
+\param[in] lines           СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚РёРїР° Line
+\param[in] number_of_lines РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє
+\param[in] reason          РїСЂРёС‡РёРЅР° РІС‹Р·РѕРІР° С„СѓРЅРєС†РёРё
 */
 
 void Print_lines(Line* lines, int number_of_lines, char* reason);
 
 /*!
- Выводит данные в файл
-\param[in] file_name	   название файла
-\param[in] lines           указатель на структуры типа Line
-\param[in] number_of_lines количество строк
-\param[in] type            модификтор доступа к файлу
-\param[in] reason		   причина вызова функции
+ Р’С‹РІРѕРґРёС‚ РґР°РЅРЅС‹Рµ РІ С„Р°Р№Р»
+\param[in] file_name	   РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°
+\param[in] lines           СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚РёРїР° Line
+\param[in] number_of_lines РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє
+\param[in] type            РјРѕРґРёС„РёРєС‚РѕСЂ РґРѕСЃС‚СѓРїР° Рє С„Р°Р№Р»Сѓ
+\param[in] reason		   РїСЂРёС‡РёРЅР° РІС‹Р·РѕРІР° С„СѓРЅРєС†РёРё
  */
 
 void Write_lines(char* file_name, Line* lines, int number_of_lines, char* type, char* reason);
 
 /*!
-Стирает знаки препинания в конце строки
-\param[in] lines           указатель на структуры типа Line
-\param[in] number_of_lines количество строк
+РЎС‚РёСЂР°РµС‚ Р·РЅР°РєРё РїСЂРµРїРёРЅР°РЅРёСЏ СЃС‚СЂРѕРєРё
+\param[in] lines           СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚РёРїР° Line
+\param[in] number_of_lines РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє
 */
 
 void Erase_end_punctuation_marks(Line* lines, int number_of_lines);
 
 /*!
-Удаляет данные из lines
-\param[in] lines           казатель на структуры типа Line
-\param[in] number_of_lines количество строк
+РЈРґР°Р»СЏРµС‚ РґР°РЅРЅС‹Рµ РёР· lines
+\param[in] lines           РєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂСѓРєС‚СѓСЂС‹ С‚РёРїР° Line
+\param[in] number_of_lines РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂРѕРє
 */
 
 void Delete_lines(Line* lines, int number_of_lines);
