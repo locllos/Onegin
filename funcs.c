@@ -116,6 +116,98 @@ int comparator(const void* value_a, const void* value_b)
 
 }
 
+int comparator_back(const void* value_a, const void* value_b)
+{
+
+
+	const Line* line_a = (const Line*)value_a;
+	const Line* line_b = (const Line*)value_b;
+
+	const char* string_a = line_a->string;
+	const char* string_b = line_b->string;
+
+	int cur_a = line_a->size - 1 > 0 ? line_a->size - 1 : 0;
+	int cur_b = line_b->size - 1 > 0 ? line_b->size - 1 : 0;
+
+	int a_is_ready = 0, b_is_ready = 0;
+
+	while (cur_a && cur_b)
+	{
+		if (!a_is_ready && isalpha(string_a[cur_a]))
+			a_is_ready = 1;
+		else if (!a_is_ready)
+			--cur_a;
+
+		if (!b_is_ready && isalpha(string_b[cur_b]))
+			b_is_ready = 1;
+		else if (!b_is_ready)
+			--cur_b;
+
+		if (a_is_ready && b_is_ready)
+		{
+			if (tolower(string_a[cur_a]) != tolower(string_b[cur_b]))
+			{
+				return string_a[cur_a] - string_b[cur_b];
+
+			}
+
+			--cur_a;
+			--cur_b;
+
+			a_is_ready = 0;
+			b_is_ready = 0;
+		}
+	}
+
+	return tolower(string_a[cur_a]) - tolower(string_b[cur_b]);
+}
+
+
+int comparator_normal(const void* value_a, const void* value_b)
+{
+	
+	const Line* line_a = (const Line*)value_a;
+	const Line* line_b = (const Line*)value_b;
+
+	const char* string_a = line_a->string;
+	const char* string_b = line_b->string;
+
+	int cur_a = 0;
+	int cur_b = 0;
+	
+	int a_is_ready = 0, b_is_ready = 0;
+
+	while (string_a[cur_a] && string_b[cur_b])
+	{
+		if (!a_is_ready && isalpha(string_a[cur_a]))
+			a_is_ready = 1;
+		else if (!a_is_ready)
+			++cur_a;
+		
+		if (!b_is_ready && isalpha(string_b[cur_b]))
+			b_is_ready = 1;
+		else if (!b_is_ready)
+			++cur_b;
+
+		if (a_is_ready && b_is_ready)
+		{
+			if (tolower(string_a[cur_a]) != tolower(string_b[cur_b]))
+			{
+				return string_a[cur_a] - string_b[cur_b];
+
+			}
+			
+			++cur_a;
+			++cur_b;
+			
+			a_is_ready = 0;
+			b_is_ready = 0;
+		}
+	}
+
+	return tolower(string_a[cur_a]) - tolower(string_b[cur_b]);
+}
+
 char* Erase_punct_marks(char* string, int size)
 {
 	char* clear_string = (char*)calloc(size + 1, sizeof(char));

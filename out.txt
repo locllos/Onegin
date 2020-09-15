@@ -270,9 +270,9 @@ Doth with his lofty and shrill-sounding throat
 Do you believe his tenders, as you call them?
 Do you consent we shall acquaint him with it,
 Do you doubt that?
+Enter Ghost
+Enter Ghost
 Enter GHOST and HAMLET
-Enter Ghost
-Enter Ghost
 Enter HAMLET, HORATIO, and MARCELLUS
 Enter HORATIO, MARCELLUS, and BERNARDO
 Enter HORATIO and MARCELLUS
@@ -882,8 +882,8 @@ Seem to me all the uses of this world!
 See thou character. Give thy thoughts no tongue,
 Set your entreatments at a higher rate
 Shakespeare homepage | Hamlet | Entire play
-Shall I strike at it with my partisan?
 Shall in the general censure take corruption
+Shall I strike at it with my partisan?
 Shark'd up a list of lawless resolutes,
 She married. O, most wicked speed, to post
 Show me the steep and thorny way to heaven;
@@ -956,6 +956,8 @@ That you, at such times seeing me, never shall,
 That you have ta'en these tenders for true pay,
 That youth and observation copied there;
 Thaw and resolve itself into a dew!
+The thin and wholesome blood: so did it mine;
+The time invites you; go; your servants tend.
 The Tragedy of Hamlet, Prince of Denmark
 The air bites shrewdly; it is very cold.
 The apparition comes: I knew your father;
@@ -1001,8 +1003,6 @@ These but the trappings and the suits of woe.
 These hands are not more like.
 The serpent that did sting thy father's life
 The source of this our watch and the chief head
-The thin and wholesome blood: so did it mine;
-The time invites you; go; your servants tend.
 The triumph of his pledge.
 The very place puts toys of desperation,
 The virtue of his will: but you must fear,
@@ -1241,11 +1241,11 @@ OPHELIA
 OPHELIA
 OPHELIA
 OPHELIA
-OPHELIA
-OPHELIA
-OPHELIA
-OPHELIA
 Enter LAERTES and OPHELIA
+OPHELIA
+OPHELIA
+OPHELIA
+OPHELIA
 CORNELIUS VOLTIMAND
 QUEEN GERTRUDE
 QUEEN GERTRUDE
@@ -1280,60 +1280,12 @@ BERNARDO
 BERNARDO
 BERNARDO
 BERNARDO
+FRANCISCO at his post. Enter to him BERNARDO
 MARCELLUS BERNARDO
 MARCELLUS BERNARDO
 MARCELLUS BERNARDO
 MARCELLUS BERNARDO
 Enter HORATIO, MARCELLUS, and BERNARDO
-FRANCISCO at his post. Enter to him BERNARDO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
-HORATIO
 HORATIO
 HORATIO
 HORATIO
@@ -1350,6 +1302,54 @@ HORATIO
 HORATIO
 HORATIO
 MARCELLUS HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
+HORATIO
 LAERTES
 LAERTES
 LAERTES
@@ -1379,37 +1379,37 @@ Enter POLONIUS
 MARCELLUS
 MARCELLUS
 MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
-MARCELLUS
 HORATIO MARCELLUS
 HORATIO MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+Enter HORATIO and MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+Enter HORATIO and MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
+MARCELLUS
 Enter HAMLET, HORATIO, and MARCELLUS
-Enter HORATIO and MARCELLUS
-Enter HORATIO and MARCELLUS
 HAMLET
 HAMLET
 HAMLET
@@ -1441,6 +1441,11 @@ HAMLET
 HAMLET
 HAMLET
 HAMLET
+Ghost beckons HAMLET
+HAMLET
+HAMLET
+Exeunt all but HAMLET
+Exeunt all but HAMLET
 HAMLET
 HAMLET
 HAMLET
@@ -1458,11 +1463,7 @@ HAMLET
 HAMLET
 HAMLET
 HAMLET
-HAMLET
-HAMLET
-HAMLET
-HAMLET
-HAMLET
+Exeunt Ghost and HAMLET
 HAMLET
 HAMLET
 HAMLET
@@ -1483,10 +1484,9 @@ HAMLET
 HAMLET
 HAMLET
 Enter GHOST and HAMLET
-Exeunt Ghost and HAMLET
-Ghost beckons HAMLET
-Exeunt all but HAMLET
-Exeunt all but HAMLET
+HAMLET
+HAMLET
+HAMLET
 That beetles o'er his base into the sea,
 That looks so many fathoms to the sea
 Than may be given you: in few, Ophelia,
@@ -1546,8 +1546,8 @@ That father lost, lost his, and the survivor bound
 It waves you to a more removed ground:
 Hic et ubique? then we'll shift our ground.
 Friends to this ground.
-O God!
 His canon 'gainst self-slaughter! O God! God!
+O God!
 Form of the thing, each word made true and good,
 It is not nor it cannot come to good:
 As stars with trains of fire and dews of blood,
@@ -1590,7 +1590,6 @@ So, uncle, there you are. Now to my word;
 Taken to wife: nor have we herein barr'd
 But even then the morning cock crew loud,
 Or that the Everlasting had not fix'd
-He.
 Let not the royal bed of Denmark be
 Neither a borrower nor a lender be;
 If it be,
@@ -1640,6 +1639,7 @@ And to those thorns that in her bosom lodge,
 O day and night, but this is wondrous strange!
 'Tis very strange.
 May sweep to my revenge.
+He.
 Like Niobe, all tears:--why she, even she--
 Thou know'st 'tis common; all that lives must die,
 With arms encumber'd thus, or this headshake,
@@ -1652,8 +1652,8 @@ For it is, as the air, invulnerable,
 How weary, stale, flat and unprofitable,
 Be thy intents wicked or charitable,
 O, horrible! O, horrible! most horrible!
-O my prophetic soul! My uncle!
 Would have mourn'd longer--married with my uncle,
+O my prophetic soul! My uncle!
 Sit down awhile;
 Season your admiration for awhile
 In equal scale weighing delight and dole,--
@@ -1844,8 +1844,8 @@ Though yet of Hamlet our dear brother's death
 Is by a forged process of my death
 And hears it roar beneath.
 Nor windy suspiration of forced breath,
-In faith,
 Nor I, my lord, in faith.
+In faith,
 Than I to Hercules: within a month:
 By what it fed on: and yet, within a month--
 Giving more light than heat, extinct in both,
@@ -1889,12 +1889,12 @@ But this most foul, strange and unnatural.
 That thou, dead corse, again in complete steel
 Grapple them to thy soul with hoops of steel;
 The wind sits in the shoulder of your sail,
-All
 Last night of all,
 That you, at such times seeing me, never shall,
 He was a man, take him for all in all,
 The better to beguile. This is for all:
 And so, without more circumstance at all,
+All
 And bid me hold my peace. I pray you all,
 A little ere the mightiest Julius fell,
 Bring with thee airs from heaven or blasts from hell,
@@ -1911,8 +1911,8 @@ I will requite your loves. So, fare you well:
 Walks o'er the dew of yon high eastward hill:
 Let it be tenable in your silence still;
 It waves me still.
-I will.
 What is't, my lord? we will.
+I will.
 I warrant it will.
 And thy best graces spend it at thy will!
 Of unimproved mettle hot and full,
@@ -2080,8 +2080,8 @@ Being nature's livery, or fortune's star,--
 Disasters in the sun; and the moist star
 And foreign mart for implements of war;
 Most like: it harrows me with fear and wonder.
-Murder!
 Revenge his foul and most unnatural murder.
+Murder!
 A countenance more in sorrow than in anger.
 Longer, longer.
 But, you must know, your father lost a father;
@@ -2206,10 +2206,10 @@ Good now, sit down, and tell me, he that knows,
 Cock crows
 Look to't, I charge you: come your ways.
 Ay, thou poor ghost, while memory holds a seat
-What?
 Are of a most select and generous chief in that.
 And for my soul, what can it do to that,
 Do you doubt that?
+What?
 Doth with his lofty and shrill-sounding throat
 Doth all the noble substance of a doubt
 Did slay this Fortinbras; who by a seal'd compact,
@@ -2316,24 +2316,24 @@ Give me one poor request.
 This heavy-headed revel east and west
 To ears of flesh and blood. List, list, O, list!
 Ay, marry, is't:
-Ghost
-Ghost
-Ghost
-Ghost
-Ghost
-Ghost
-Ghost
-Ghost
-Ghost
-Ghost
-Ghost
-Ghost
-Enter Ghost
-Enter Ghost
-Re-enter Ghost
-Exit Ghost
-Exit Ghost
 Alas, poor ghost!
+Exit Ghost
+Ghost
+Exit Ghost
+Ghost
+Enter Ghost
+Enter Ghost
+Ghost
+Ghost
+Ghost
+Ghost
+Ghost
+Ghost
+Ghost
+Ghost
+Ghost
+Re-enter Ghost
+Ghost
 She married. O, most wicked speed, to post
 Seek for thy noble father in the dust:
 So to seduce!--won to his shameful lust
@@ -2369,7 +2369,6 @@ Ay, springes to catch woodcocks. I do know,
 What hour now?
 Grows wide withal. Perhaps he loves you now,
 That it went hand in hand even with the vow
-Say,
 Doth make the night joint-labourer with the day:
 And it must follow, as the night the day,
 From the first corse till he that died to-day,
@@ -2378,6 +2377,7 @@ Shakespeare homepage | Hamlet | Entire play
 For they are actions that a man might play:
 That you have ta'en these tenders for true pay,
 Look you, I'll go pray.
+Say,
 Re-speaking earthly thunder. Come away.
 And at the sound it shrunk in haste away,
 See, it stalks away!

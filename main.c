@@ -8,24 +8,18 @@ int main()
 
 	Line* copy_lines = Copy_lines(normal_lines, number_of_lines);
 
-	qsort(copy_lines, number_of_lines, sizeof(Line), comparator);
+	qsort(copy_lines, number_of_lines, sizeof(Line), comparator_normal);
 
 	Write_lines("out.txt", copy_lines, number_of_lines, "w", "Watch sorted lines by first elements");
-
-	Line* reverse_lines = Reverse_lines(normal_lines, number_of_lines);
 	
-	qsort(reverse_lines, number_of_lines, sizeof(Line), comparator);
+	qsort(copy_lines, number_of_lines, sizeof(Line), comparator_back);
 
-	Line* reverse_reverse_lines = Reverse_lines(reverse_lines, number_of_lines);
-
-	Write_lines("out.txt", reverse_reverse_lines, number_of_lines, "a", "Watch sorted lines by last elements");
+	Write_lines("out.txt", copy_lines, number_of_lines, "a", "Watch sorted lines by last elements");
 
 	Write_lines("out.txt", normal_lines, number_of_lines, "a", "Watch original text");
 	
 	Delete_lines(normal_lines, number_of_lines);
 	Delete_lines(copy_lines, number_of_lines);
-	Delete_lines(reverse_lines, number_of_lines);
-	Delete_lines(reverse_reverse_lines, number_of_lines);
 
 	return 0;
 }

@@ -23,6 +23,10 @@ Line* Read_lines(char* file_name, int* number_of_lines);
 
 int comparator(const void* value_1, const void* value_2);
 
+int comparator_back(const void* value_a, const void* value_b);
+
+int comparator_normal (const void* value_a, const void* value_b);
+
 /*!
 Реверс строки
 \param[in] lines           указатель на структуры типа Line
