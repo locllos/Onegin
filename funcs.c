@@ -1,5 +1,17 @@
 #include "header.h"
 
+void Swap(void* a, void* b, const int size)
+{
+	
+	char What_have_I_become_My_sweetest_friend_Everyone_I_know_Goes_away_in_the_end = 0;
+
+	for (int cur = 0; cur < size; ++cur)
+	{
+		What_have_I_become_My_sweetest_friend_Everyone_I_know_Goes_away_in_the_end = *((char*)a + cur);
+		*((char*)a + cur) = *((char*)b + cur);
+		*((char*)b + cur) = What_have_I_become_My_sweetest_friend_Everyone_I_know_Goes_away_in_the_end;
+	}
+}
 
 Line* Read_lines(char* file_name, int* number_of_lines)
 {
@@ -219,6 +231,8 @@ int comparator_normal(const void* value_a, const void* value_b)
 	const char* string_a = line_a->string;
 	const char* string_b = line_b->string;
 
+	//printf("\nCompare: %s \nand\n%s", string_a, string_b);
+
 	int cur_a = 0;
 	int cur_b = 0;
 	
@@ -239,10 +253,7 @@ int comparator_normal(const void* value_a, const void* value_b)
 		if (a_is_ready && b_is_ready)
 		{
 			if (tolower(string_a[cur_a]) != tolower(string_b[cur_b]))
-			{
 				return string_a[cur_a] - string_b[cur_b];
-
-			}
 			
 			++cur_a;
 			++cur_b;
@@ -325,3 +336,48 @@ void Delete_lines(Line* lines, int number_of_lines)
 
 	free(lines);
 }
+
+//I dnnt know why but is doesnt work correctly!!!
+void QQsort(void* data, const int length, const int size, int (*comparator)(const void* value_a, const void* value_b))
+{
+	int cur_small = 0,
+		cur_big = length - 1;
+
+	void* pivot = ((char*)data + size * (length / 2));
+	printf("\nPivot: %s\n", ((Line*)pivot)->string);
+	
+	while (cur_small <= cur_big)
+	{
+		while (comparator((void*)((char*)data + size * cur_small), pivot) < 0)
+			++cur_small;
+		while (comparator((void*)((char*)data + size * cur_big), pivot) > 0)
+			--cur_big;
+
+		if (cur_small <= cur_big)
+		{
+			Swap((void*)((char*)data + size * cur_small), (void*)((char*)data + size * cur_big), size);
+			++cur_small;
+			--cur_big;
+		}
+	}
+
+	if (cur_big > 0)
+		QQsort(data, cur_big, size, comparator);
+	if (cur_small < length)
+		QQsort((void*)((char*)data + cur_small * size), length - cur_small, size, comparator);
+}
+
+void Insertion_sort(void* data, const int length, const int size, int (*comparator)(const void* value_a, const void* value_b))
+{
+	for (int i = 1; i < length; ++i)
+	{
+		int j = i;
+
+		while (j > 0 && (comparator((void*)((char*)data + size * (j - 1)), (void*)((char*)data + size * j))) > 0)
+		{
+			Swap((void*)((char*)data + size * (j - 1)), (void*)((char*)data + size * j), size);
+			j--;
+		}
+	}
+}
+
