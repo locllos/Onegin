@@ -2,10 +2,13 @@
 
 
 int main()
-{
+{	
 	int number_of_lines = 0;
-	Line* normal_lines = Read_lines("in.txt", &number_of_lines);
+	Line* normal_lines = Read_lines_fast("in.txt", &number_of_lines);
 
+	//Print_lines(normal_lines, number_of_lines, "Look at new read");
+
+	
 	Line* copy_lines = Copy_lines(normal_lines, number_of_lines);
 
 	qsort(copy_lines, number_of_lines, sizeof(Line), comparator_normal);

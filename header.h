@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <sys\stat.h>
 
 typedef struct Line
 {
@@ -21,11 +22,16 @@ typedef struct Line
 
 Line* Read_lines(char* file_name, int* number_of_lines);
 
+Line* Read_lines_fast(const char* filename, int* amount_of_lines);
+
+
 int comparator(const void* value_1, const void* value_2);
 
 int comparator_back(const void* value_a, const void* value_b);
 
 int comparator_normal (const void* value_a, const void* value_b);
+
+int __Approx_Length__(const char* file_name);
 
 /*!
 Реверс строки

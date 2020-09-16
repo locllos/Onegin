@@ -1,7 +1,6 @@
 #include "header.h"
 
 
-
 Line* Read_lines(char* file_name, int* number_of_lines)
 {
 	FILE* file = fopen(file_name, "r");
@@ -55,6 +54,55 @@ Line* Read_lines(char* file_name, int* number_of_lines)
 	return lines;
 }
 
+Line* Read_lines_fast(const char* filename, int* amount_of_lines)
+{
+	const int approx_length = __Approx_Length__(filename);
+
+	FILE* file = fopen(filename, "r");
+	Line* lines = (Line*)calloc(approx_length, sizeof(Line));
+	char* buffer = (char*)calloc(approx_length + 1, sizeof(char));
+
+	const unsigned int length = fread(buffer, sizeof(char), approx_length + 1, file);
+
+	buffer[length] = '\0';
+
+	int cur_size = 0,
+		number_of_lines = 0;
+	for (int i = 0; i < length; ++i)
+	{
+		if (buffer[i] != '\n')
+			++cur_size;
+		else
+		{
+			lines[number_of_lines++].size = cur_size;
+			cur_size = 0;
+		}
+	}
+
+	//На случай если в конце файла не было проставлено символов перехода на следующую строку
+	if (buffer[length - 1] != '\n')
+	{
+		lines[number_of_lines].size = cur_size;
+		++number_of_lines;
+	}
+
+	int cur_buf = 0;
+	for (int i = 0; i < number_of_lines; ++i)
+	{
+		lines[i].string = (char*)calloc(lines[i].size + 1, sizeof(char));
+		for (int j = 0; j < lines[i].size; ++j)
+			lines[i].string[j] = buffer[cur_buf++];
+
+		lines[i].string[lines[i].size] = '\0';
+		++cur_buf; // Jump over slash n
+	}
+
+	fclose(file);
+	
+	(*amount_of_lines) = number_of_lines;
+	return lines;
+}
+
 Line* Copy_lines(Line* lines, int number_of_lines)
 {
 	Line* copy_lines = (Line*)calloc(number_of_lines, sizeof(Line));
@@ -98,7 +146,7 @@ Line* Reverse_lines(Line* old_lines, int number_of_lines)
 	return new_lines;
 }
 
-int comparator(const void* value_a, const void* value_b)
+int comparator_slow_and_bad_but_beautiful(const void* value_a, const void* value_b)
 {
 	const Line* line_a = (const Line*)value_a;
 	const Line* line_b = (const Line*)value_b;
@@ -162,7 +210,6 @@ int comparator_back(const void* value_a, const void* value_b)
 	return tolower(string_a[cur_a]) - tolower(string_b[cur_b]);
 }
 
-
 int comparator_normal(const void* value_a, const void* value_b)
 {
 	
@@ -206,6 +253,16 @@ int comparator_normal(const void* value_a, const void* value_b)
 	}
 
 	return tolower(string_a[cur_a]) - tolower(string_b[cur_b]);
+}
+
+int __Approx_Length__(const char* file_name)
+{
+	struct stat buff;
+
+	stat(file_name, &buff);
+
+	return buff.st_size;
+	
 }
 
 char* Erase_punct_marks(char* string, int size)
