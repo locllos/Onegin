@@ -42,6 +42,8 @@ int comparator_normal (const void* value_a, const void* value_b);
 
 int __Approx_Length__(const char* file_name);
 
+
+
 /*!
 Создает новую строку, содержащую только буквы, и перезаписывает туда поданную на вход строку
 \param[in] string           строка
@@ -87,14 +89,6 @@ void Write_lines(char* file_name, Line* lines, int number_of_lines, char* type, 
 */
 
 void Erase_end_punctuation_marks(Line* lines, int number_of_lines);
-
-/*!
-Удаляет данные из lines
-\param[in] lines           казатель на структуры типа Line
-\param[in] number_of_lines количество строк
-*/
-
-void Delete_lines(Line* lines, int number_of_lines);
 
 void QQsort(void* data, const int length, const int size, int (*)(const void* value_a, const void* value_b));
 

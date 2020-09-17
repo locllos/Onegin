@@ -312,12 +312,6 @@ void Write_lines(char* file_name, Line* lines, int number_of_lines, char* type, 
 	fclose(file);
 }
 
-void Delete_lines(Line* lines, int number_of_lines)
-{
-	free(lines[0].string);
-	free(lines);
-}
-
 void QQsort(void* data, const int length, const int size, int (*comparator)(const void* value_a, const void* value_b))
 {
 	if (length > 2)

@@ -1,5 +1,4 @@
 #include "header.h"
-#include "sort.cpp"
 
 
 int main()
@@ -21,9 +20,6 @@ int main()
 	Write_lines("out.txt", copy_lines, number_of_lines, "a", "Watch sorted lines by last elements");
 
 	Write_lines("out.txt", normal_lines, number_of_lines, "a", "Watch original text");
-	
-	//Delete_lines(normal_lines, number_of_lines);
-	//Delete_lines(copy_lines, number_of_lines);
 	
 	return 0;
 	
