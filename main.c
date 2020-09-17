@@ -1,4 +1,5 @@
 #include "header.h"
+#include "sort.cpp"
 
 
 int main()
@@ -7,14 +8,11 @@ int main()
 	int number_of_lines = 0;
 	Line* normal_lines = Read_lines_fast("in.txt", &number_of_lines);
 
-	//Print_lines(normal_lines, number_of_lines, "Look at new read");
+	Print_lines(normal_lines, number_of_lines, "Look");
 
-	
 	Line* copy_lines = Copy_lines(normal_lines, number_of_lines);
 
-	Insertion_sort(copy_lines, number_of_lines, sizeof(Line), comparator_normal);
-
-	printf("\nCHECKED\n");
+	QQsort(copy_lines, number_of_lines, sizeof(Line), comparator_normal);
 	
 	Write_lines("out.txt", copy_lines, number_of_lines, "w", "Watch sorted lines by first elements");
 	
@@ -24,9 +22,9 @@ int main()
 
 	Write_lines("out.txt", normal_lines, number_of_lines, "a", "Watch original text");
 	
-	Delete_lines(normal_lines, number_of_lines);
-	Delete_lines(copy_lines, number_of_lines);
-
+	//Delete_lines(normal_lines, number_of_lines);
+	//Delete_lines(copy_lines, number_of_lines);
+	
 	return 0;
 	
 }

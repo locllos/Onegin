@@ -20,10 +20,19 @@ typedef struct Line
 \return указатель на структуры типа Line
 */
 
-Line* Read_lines(char* file_name, int* number_of_lines);
+Line* Read_lines_slow_and_old(char* file_name, int* number_of_lines);
+
+/*!
+Считывает данные файла
+\param[in]   file_name       название файла
+\param[out]  number_of_lines количество строк
+\return указатель на структуры типа Line
+*/
 
 Line* Read_lines_fast(const char* filename, int* amount_of_lines);
 
+
+int Get_length(const Line* lines, const int number_of_lines);
 
 int comparator(const void* value_1, const void* value_2);
 
@@ -32,16 +41,6 @@ int comparator_back(const void* value_a, const void* value_b);
 int comparator_normal (const void* value_a, const void* value_b);
 
 int __Approx_Length__(const char* file_name);
-
-
-/*!
-Реверс строки
-\param[in] lines           указатель на структуры типа Line
-\param[in] number_of_lines количество строк
-\returns указатель на структуры типа Line
-*/
-
-Line* Reverse_lines(Line* old_lines, int number_of_lines);
 
 /*!
 Создает новую строку, содержащую только буквы, и перезаписывает туда поданную на вход строку
@@ -102,3 +101,5 @@ void QQsort(void* data, const int length, const int size, int (*)(const void* va
 void Swap(void* a, void* b, const int size);
 
 void Insertion_sort(void* data, const int length, const int size, int (*comparator)(const void* value_a, const void* value_b));
+
+
