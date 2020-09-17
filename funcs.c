@@ -283,7 +283,7 @@ void Print_lines(Line* lines, int number_of_lines, char* reason)
 	printf("%s\n", reason);
 	for (int i = 0; i < number_of_lines; ++i)
 	{
-		printf("%d: ", lines[i].size);
+		printf("SIZE - %d: ", lines[i].size);
 
 		for (int j = 0; j < lines[i].size; ++j)
 			printf("%c", lines[i].string[j]);
