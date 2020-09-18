@@ -29,7 +29,7 @@ Line* Read_lines_slow_and_old(char* file_name, int* number_of_lines);
 \return указатель на структуры типа Line
 */
 
-Line* Read_lines_fast(const char* filename, int* amount_of_lines);
+Line* Read_lines_fast(const char* filename, int* amount_of_lines, char** buffer);
 
 
 int Get_length(const Line* lines, const int number_of_lines);
@@ -60,7 +60,7 @@ char* Erase_punct_marks(char* string, int size);
 \returns указатели на структуры типа Line
 */
 
-Line* Copy_lines(Line* lines, int number_of_lines);
+Line* Copy_lines(Line* lines, int number_of_lines, char** buffer, char** copy_buffer);
 
 /*!
 Печатает данные файла

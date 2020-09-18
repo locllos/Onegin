@@ -53,14 +53,14 @@ Line* Read_lines_slow_and_old(char* file_name, int* number_of_lines)
 	return lines;
 }
 
-Line* Read_lines_fast(const char* filename, int* amount_of_lines)
+Line* Read_lines_fast(const char* filename, int* amount_of_lines, char** buffer)
 {
 	const int approx_length = __Approx_Length__(filename);
 
 	FILE* file = fopen(filename, "r");
-	char* buffer = (char*)calloc(approx_length + 1, sizeof(char));
+	*buffer = (char*)calloc(approx_length + 1, sizeof(char));
 
-	const int length = fread(buffer, sizeof(char), approx_length + 1, file);
+	const int length = fread(*buffer, sizeof(char), approx_length + 1, file);
 	
 	int number_of_lines = approx_length - length;
 	Line* lines = (Line*)calloc(number_of_lines + 5, sizeof(Line)); //+5 - ШОБ НАВЕРНЯКА
@@ -69,12 +69,12 @@ Line* Read_lines_fast(const char* filename, int* amount_of_lines)
 		cur_line = 0;
 	for (int i = 0; i < length; ++i)
 	{
-		if (buffer[i] != '\n')
+		if ((*buffer)[i] != '\n')
 			++cur_size;
 		else
 		{
 			lines[cur_line].size = cur_size;
-			lines[cur_line].string = buffer + i - cur_size;
+			lines[cur_line].string = *buffer + i - cur_size;
 			lines[cur_line].string[cur_size] = '\0';
 			cur_line++;
 			cur_size = 0;
@@ -82,11 +82,11 @@ Line* Read_lines_fast(const char* filename, int* amount_of_lines)
 	}
 
 	//На случай если в конце файла не было проставлено символов перехода на следующую строку
-	if (buffer[length] != '\n')
+	if ((*buffer)[length] != '\n')
 	{
-		buffer[length] = '\0';
+		(*buffer)[length] = '\0';
 		lines[number_of_lines].size = cur_size;
-		lines[number_of_lines].string = buffer + length - cur_size;
+		lines[number_of_lines].string = *buffer + length - cur_size;
 		number_of_lines++;
 	}
 
@@ -96,22 +96,21 @@ Line* Read_lines_fast(const char* filename, int* amount_of_lines)
 	return lines;
 }
 
-Line* Copy_lines(Line* lines, int number_of_lines)
+Line* Copy_lines(Line* lines, int number_of_lines, char** buffer, char** copy_buffer)
 {
 	const int length = Get_length(lines, number_of_lines);
-	const char* buffer = lines[0].string;
 	 
-	char* copy_buffer = (char*)calloc(length, sizeof(char));
+	*copy_buffer = (char*)calloc(length + 1, sizeof(char));
 	Line* copy_lines = (Line*)calloc(number_of_lines, sizeof(Line));
 
 	int cur_line = 0; 
 	for (int i = 0; i < length; ++i)
 	{
-		copy_buffer[i] = buffer[i];
+		(*copy_buffer)[i] = (*buffer)[i];
 
-		if (copy_buffer[i] == '\0')
+		if ((*copy_buffer)[i] == '\0')
 		{
-			copy_lines[cur_line].string = copy_buffer + i - lines[cur_line].size;
+			copy_lines[cur_line].string = *copy_buffer + i - lines[cur_line].size;
 			copy_lines[cur_line].size = lines[cur_line].size;
 			cur_line++;
 			
