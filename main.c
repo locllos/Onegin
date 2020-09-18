@@ -1,9 +1,9 @@
 #include "header.h"
 
 
-int main()
+int main(int argC, char* argV[])
 {
-	
+
 	int number_of_lines = 0;
 	char* buffer = NULL;
 	char* copy_buffer = NULL;
@@ -28,6 +28,19 @@ int main()
 	free(copy_buffer);
 	free(normal_lines);
 	free(copy_lines);
+
+	if (argC > 1 && *argV[1] == '-')
+	{
+		if (*(argV[1] + 1) == 'u')
+		{
+			printf("YOU HAVE LAUNCHED UNIT TESTS\n");
+			Unit_tests();
+		}
+		else
+			printf("INCORRECT  KEY\n");
+	}
+	else
+		printf("INCORRECT KEYS\n");
 	
 	return 0;
 	

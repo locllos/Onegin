@@ -9,7 +9,7 @@
 typedef struct Line
 {
 	char* string;
-	int size;
+	int	  size;
 } Line;
 
 
@@ -17,20 +17,18 @@ typedef struct Line
 Считывает данные файла
 \param[in]   file_name       название файла
 \param[out]  number_of_lines количество строк
-\return указатель на структуры типа Line
-*/
-
-Line* Read_lines_slow_and_old(char* file_name, int* number_of_lines);
-
-/*!
-Считывает данные файла
-\param[in]   file_name       название файла
-\param[out]  number_of_lines количество строк
+\param[out]  buffer          буфер символов
 \return указатель на структуры типа Line
 */
 
 Line* Read_lines_fast(const char* filename, int* amount_of_lines, char** buffer);
 
+/*!
+Длина массива		
+\param[in]   lines           указатель на структуру типа Line
+\param[out]  number_of_lines количество строк
+\return длина массива
+*/
 
 int Get_length(const Line* lines, const int number_of_lines);
 
@@ -54,10 +52,11 @@ int __Approx_Length__(const char* file_name);
 char* Erase_punct_marks(char* string, int size);
 
 /*!
-Копирует и возвращает структуры типа Line
-\param[in] Line*					указатели на структры типа Line*
-\param[in] nubmer_of_lines			количество строк
-\returns указатели на структуры типа Line
+Копирует данные из структуры Line и возвращает указатель на структуру типа Line
+\param[in]   lines           указатель на структуру типа Line
+\param[out]  number_of_lines количество строк
+\param[out]  buffer          буфер символов
+\return указатель на структуры типа Line
 */
 
 Line* Copy_lines(Line* lines, int number_of_lines, char** buffer, char** copy_buffer);
@@ -90,10 +89,36 @@ void Write_lines(char* file_name, Line* lines, int number_of_lines, char* type, 
 
 void Erase_end_punctuation_marks(Line* lines, int number_of_lines);
 
-void QQsort(void* data, const int length, const int size, int (*)(const void* value_a, const void* value_b));
+/*!
+БЫСТРО СОРТИРУЕТ МАААААССССИВ ДАНННЫХ
+\param[in]  data            указатель на ДАНННЫЕ
+\param[in]  length			количество элементов
+\param[in]  size			размер каждого элемента ДАНННЫЫЫХ
+\param[in]  comparator		KОМПАРРРАТОРРР!
+\return НИЧЕРТА ОН НЕ ВОЗВРАЩАЕТ 
+*/
+
+void QQsort(void* data, const int length, const int size, int (*comparator)(const void* value_a, const void* value_b));
+
+/*!
+СВОП СВОП СВОП ДЛЯ ЛЮБОГО ТИПА СВОП СВОП СВОП
+\param[in]  a	элемент а
+\param[in]  b	элемент b
+\param[in] size размер элементаи
+*/
 
 void Swap(void* a, void* b, const int size);
 
+/*!
+НЕБЫСТРО СОРТИРУЕТ МАААААССССИВ ДАНННЫХ
+\param[in]  data            указатель на ДАНННЫЕ
+\param[in]  length			количество элементов
+\param[in]  size			размер каждого элемента ДАНННЫЫЫХ
+\param[in]  comparator      КОМПАРРРАТОРРР!
+\return НИЧЕРТА ОН НЕ ВОЗВРАЩАЕТ
+*/
+
 void Insertion_sort(void* data, const int length, const int size, int (*comparator)(const void* value_a, const void* value_b));
 
+void Unit_tests();
 
