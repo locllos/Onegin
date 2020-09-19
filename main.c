@@ -21,13 +21,10 @@ int main(int argC, char* argV[])
 	Insertion_sort(copy_lines, number_of_lines, sizeof(Line), comparator_back);
 
 	Write_lines("out.txt", copy_lines, number_of_lines, "a", "Watch sorted lines by last elements");
-
 	Write_lines("out.txt", normal_lines, number_of_lines, "a", "Watch original text");
 
-	free(buffer);
-	free(copy_buffer);
-	free(normal_lines);
-	free(copy_lines);
+	Delete_lines(normal_lines, buffer);
+	Delete_lines(copy_lines, copy_buffer);
 
 	if (argC > 1 && *argV[1] == '-')
 	{
@@ -39,8 +36,6 @@ int main(int argC, char* argV[])
 		else
 			printf("INCORRECT  KEY\n");
 	}
-	else
-		printf("INCORRECT KEYS\n");
 	
 	return 0;
 	

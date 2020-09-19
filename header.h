@@ -82,6 +82,14 @@ void Print_lines(Line* lines, int number_of_lines, char* reason);
 void Write_lines(char* file_name, Line* lines, int number_of_lines, char* type, char* reason);
 
 /*!
+ Удаляет данные из памяти
+\param[in] lines           указатель на структуры типа Line
+\param[in] buffer		   указатель на строки
+ */
+
+void Delete_lines(Line* lines, char* buffer);
+
+/*!
 Стирает знаки препинания строки
 \param[in] lines           указатель на структуры типа Line
 \param[in] number_of_lines количество строк
@@ -90,7 +98,7 @@ void Write_lines(char* file_name, Line* lines, int number_of_lines, char* type, 
 void Erase_end_punctuation_marks(Line* lines, int number_of_lines);
 
 /*!
-БЫСТРО СОРТИРУЕТ МАААААССССИВ ДАНННЫХ
+БЫСТРО СОРТИРУЕТ МАССССИВ ДАНННННЫХ
 \param[in]  data            указатель на ДАНННЫЕ
 \param[in]  length			количество элементов
 \param[in]  size			размер каждого элемента ДАНННЫЫЫХ
@@ -110,7 +118,7 @@ void QQsort(void* data, const int length, const int size, int (*comparator)(cons
 void Swap(void* a, void* b, const int size);
 
 /*!
-НЕБЫСТРО СОРТИРУЕТ МАААААССССИВ ДАНННЫХ
+НЕБЫСТРО СОРТИРУЕТ МАССССИВ ДАННННННЫХ
 \param[in]  data            указатель на ДАНННЫЕ
 \param[in]  length			количество элементов
 \param[in]  size			размер каждого элемента ДАНННЫЫЫХ
