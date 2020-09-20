@@ -7,7 +7,7 @@ int main(int argC, char* argV[])
 	int number_of_lines = 0;
 	char* buffer = NULL;
 	char* copy_buffer = NULL;
-	
+
 	Line* normal_lines = Read_lines_fast("in.txt", &number_of_lines, &buffer);
 
 	//Print_lines(normal_lines, number_of_lines, "Look");
@@ -15,9 +15,9 @@ int main(int argC, char* argV[])
 	Line* copy_lines = Copy_lines(normal_lines, number_of_lines, &buffer, &copy_buffer);
 
 	QQsort(copy_lines, number_of_lines, sizeof(Line), comparator_normal);
-	
+
 	Write_lines("out.txt", copy_lines, number_of_lines, "w", "Watch sorted lines by first elements");
-	
+
 	Insertion_sort(copy_lines, number_of_lines, sizeof(Line), comparator_back);
 
 	Write_lines("out.txt", copy_lines, number_of_lines, "a", "Watch sorted lines by last elements");
@@ -35,6 +35,10 @@ int main(int argC, char* argV[])
 		}
 		else
 			printf("INCORRECT  KEY\n");
+	}
+	else if (argC > 1)
+	{
+		printf("INCORRECT INPUT!\n");
 	}
 	
 	return 0;
