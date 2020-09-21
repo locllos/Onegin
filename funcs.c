@@ -9,26 +9,31 @@ Line* Read_lines_fast(const char* filename, int* amount_of_lines, char** buffer)
 
 	const int length = fread(*buffer, sizeof(char), approx_length + 1, file);
 	
-	int number_of_lines = approx_length - length;
-	Line* lines = (Line*)calloc(number_of_lines + 5, sizeof(Line)); //+5 - ШОБ НАВЕРНЯКА
+	int number_of_lines = 0;
+	Line* lines = (Line*)calloc(2, sizeof(Line)); 
 
 	int cur_size = 0,
-		cur_line = 0;
+		capacity = 2;
 	for (int i = 0; i < length; ++i)
 	{
 		if ((*buffer)[i] != '\n')
 			++cur_size;
 		else
 		{
-			lines[cur_line].size = cur_size;
-			lines[cur_line].string = *buffer + i - cur_size;
-			lines[cur_line].string[cur_size] = '\0';
-			cur_line++;
+			if (capacity < number_of_lines + 1)
+			{
+				capacity *= 2;
+				lines = (Line*)realloc((void*)lines, capacity * sizeof(Line));
+			}
+			lines[number_of_lines].size = cur_size;
+			lines[number_of_lines].string = *buffer + i - cur_size;
+			lines[number_of_lines].string[cur_size] = '\0';
+			number_of_lines++;
 			cur_size = 0;
 		}
 	}
 
-	//На случай если в конце файла не было проставлено символов перехода на следующую строку
+	//РќР° СЃР»СѓС‡Р°Р№ РµСЃР»Рё РІ РєРѕРЅС†Рµ С„Р°Р№Р»Р° РЅРµ Р±С‹Р»Рѕ РїСЂРѕСЃС‚Р°РІР»РµРЅРѕ СЃРёРјРІРѕР»РѕРІ РїРµСЂРµС…РѕРґР° РЅР° СЃР»РµРґСѓСЋС‰СѓСЋ СЃС‚СЂРѕРєСѓ
 	if ((*buffer)[length] != '\n')
 	{
 		(*buffer)[length] = '\0';
@@ -195,7 +200,7 @@ int Get_length(const Line* lines, const int number_of_lines)
 	for (int i = 0; i < number_of_lines; ++i)
 		length += lines[i].size;
 
-	length += number_of_lines; //Нужно учесть символы перехода на новую строку
+	length += number_of_lines; //РќСѓР¶РЅРѕ СѓС‡РµСЃС‚СЊ СЃРёРјРІРѕР»С‹ РїРµСЂРµС…РѕРґР° РЅР° РЅРѕРІСѓСЋ СЃС‚СЂРѕРєСѓ
 
 	return length;
 }
@@ -300,7 +305,7 @@ void QQsort(void* data, const int length, const int size, int (*comparator)(cons
 		QQsort(data, cur_big + 1, size, comparator);
 		QQsort((void*)((char*)data + (cur_big + 1) * size), length - cur_big - 1, size, comparator);
 	}
-	//Если меньше 2 элементов то сортировать там нечего
+	//Р•СЃР»Рё РјРµРЅСЊС€Рµ 2 СЌР»РµРјРµРЅС‚РѕРІ С‚Рѕ СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ С‚Р°Рј РЅРµС‡РµРіРѕ
 	else if (length == 2)
 	{
 		if ((comparator((void*)((char*)data + size * 0), (void*)((char*)data + size * 1)) > 0))
@@ -334,16 +339,16 @@ void Unit_tests()
 	char* test_cmp_normal_2 = "abc";
 	char* test_cmp_normal_3 = "abac";
 	char* test_cmp_normal_4 = "acab";
-	Line* line_1 = calloc(1, sizeof(Line));
+	Line* line_1 = (Line*)calloc(1, sizeof(Line));
 	line_1->size = 3;
 	line_1->string = test_cmp_normal_1;
-	Line* line_2 = calloc(1, sizeof(Line));
+	Line* line_2 = (Line*)calloc(1, sizeof(Line));
 	line_2->size = 3;
 	line_2->string = test_cmp_normal_2;
-	Line* line_3 = calloc(1, sizeof(Line));
+	Line* line_3 = (Line*)calloc(1, sizeof(Line));
 	line_3->size = 4;
 	line_3->string = test_cmp_normal_3;
-	Line* line_4 = calloc(1, sizeof(Line));
+	Line* line_4 = (Line*)calloc(1, sizeof(Line));
 	line_4->size = 4;
 	line_4->string = test_cmp_normal_4;
 
